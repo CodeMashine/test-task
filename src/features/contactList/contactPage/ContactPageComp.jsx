@@ -1,12 +1,16 @@
-import React from "react";
+import React ,{useState} from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { deleteFunc, toggleEditFunc, changeFunc, createFunc, searchFunc } from "./contactPageSlice";
 import { exitFunc } from "../loginPage/loginPageSlice";
 import styles from "./style.module.css";
 
+
 export default function ContactPage() {
     const friendList = useSelector(state => state.contact);
     const dispatch = useDispatch();
+    const [name,setName]=useState("") ;
+    const [phone,setPhone]=useState("") ;
+    const [city,setCity]=useState("") ;
 
     const body = friendList.map(item => {
         return <tr key={item["id"]} className={item["isSearch"] ? styles["isSearch"] : null}>
@@ -46,11 +50,17 @@ export default function ContactPage() {
                     </tr>
                 </thead>
                 <tfoot><tr>
-                    <td> <input id="new_name" /> </td>
-                    <td> <input id="new_phone" /> </td>
-                    <td> <input id="new_city" /> </td>
+                    <td> <input value = {name} onChange={(event)=>setName(event.target.value)} /> </td>
+                    <td> <input value = {phone} onChange={(event)=>setPhone(event.target.value)} /> </td>
+                    <td> <input value = {city} onChange={(event)=>setCity(event.target.value)} /> </td>
 
-                    <td><button onClick={() => dispatch(createFunc())}>Save</button></td>
+                    <td><button onClick={() => {
+                        dispatch(createFunc([name,phone,city])) ;
+                        setName("");
+                        setPhone("");
+                        setCity("");
+                        }
+                        }>Save</button></td>
                 </tr>
                 </tfoot>
                 <tbody>
