@@ -5,7 +5,7 @@ const initialState = {
    password :"admin",
    loginAtempt:"",
    passwordAtempt:"",
-   validation:true ,
+   validation:false ,
 }
 
 

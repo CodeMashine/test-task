@@ -29,11 +29,11 @@ const contactPageSlice = createSlice({
             });
         },
         changeFunc: (state, action) => {
-            const value = document.getElementById(action.payload).value;
+            const [name ,value] = action.payload;
             const  newState = Object.assign([],state) ;
             return  newState.map(item => {
                 if (item["isEdit"]) {
-                    return { ...item, [action.payload]: value };
+                    return { ...item, [name]: value };
                 } else {
                     return item;
                 }

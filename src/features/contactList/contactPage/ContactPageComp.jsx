@@ -15,9 +15,9 @@ export default function ContactPage() {
     const body = friendList.map(item => {
         return <tr key={item["id"]} className={item["isSearch"] ? styles["isSearch"] : null}>
             {item["isEdit"] ? <>
-                <td><input id="name" value={item["name"]} onChange={() => dispatch(changeFunc("name"))} /></td>
-                <td><input id="phone" value={item["phone"]} onChange={() => dispatch(changeFunc("phone"))} /></td>
-                <td><input id="city" value={item["city"]} onChange={() => dispatch(changeFunc("city"))} /></td>
+                <td><input id="name" value={item["name"]} onChange={(event) => dispatch(changeFunc(["name" , event.target.value]))} /></td>
+                <td><input id="phone" value={item["phone"]} onChange={(event) => dispatch(changeFunc(["phone" , event.target.value]))} /></td>
+                <td><input id="city" value={item["city"]} onChange={(event) => dispatch(changeFunc(["city" , event.target.value]))} /></td>
             </> : <>
                 <td className = {styles.td}>{item["name"]}</td>
                 <td className = {styles.td} >{item["phone"]}</td>
